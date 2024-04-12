@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class shootSystem: MonoBehaviour
+
+public class ShootSystem: MonoBehaviour
 {
     public GameObject Revolver_Bullet;
-    //public GameObject Revolver_Bullet;
     public Transform muzzlePoint;
-    public float bulletSpeed = 10f;
-    public float fireRate = 0.5f;
-    private float nextFireTime;
+    public float bulletSpeed = 1f;
 
     public InputActionReference triggerAction;
+
+    private int counter = 1;
 
     // Define a method to handle the trigger pull event
     private void OnEnable()
@@ -33,35 +33,30 @@ public class shootSystem: MonoBehaviour
     // Method to handle trigger pull event
     private void OnTriggerPull(InputAction.CallbackContext context)
     {
-        // Check if the trigger is pressed
-        if (context.ReadValue<float>() > 0.5f)
-        {
-            // Trigger action when the trigger is pulled
-            Debug.Log("Trigger pulled on right controller!");
-            Shoot(); 
-
-            // Add your custom behavior here
-            // For example, you can shoot a gun, grab an object, etc.
-        }
+        
+        // Trigger action when the trigger is pulled
+        Debug.Log("Trigger pull " + counter);
+        counter++;
+        Shoot(); 
+    
     }
-
-    //void Update()
-    //{
-      //  if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
-        //{
-          //  Shoot();
-            //nextFireTime = Time.time + fireRate;
-        //}
-    //}
 
     void Shoot()
     {
         GameObject bullet = Instantiate(Revolver_Bullet, muzzlePoint.position, muzzlePoint.rotation);
+
+        BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+
+        if (bulletScript != null)
+        {
+            bulletScript.destroySelf = true;
+        }
+        
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+
         if (bulletRigidbody != null)
         {
             bulletRigidbody.velocity = muzzlePoint.forward * bulletSpeed;
         }
-        // You can add additional logic here such as bullet damage, effects, etc.
     }
 }

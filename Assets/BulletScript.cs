@@ -1,23 +1,20 @@
-// TargetScript.cs
 using UnityEngine;
 
-public class TargetScript : MonoBehaviour
+public class BulletScript : MonoBehaviour
 {
-    // Make the method public so it can be called from other scripts
-    public void DestroyTarget()
+    public float destructionDelay = 5f;
+    public bool destroySelf = false;
+
+    void Start()
     {
-        // Perform any actions you want when the target is destroyed
-        Destroy(gameObject); // Destroy the target
+        if (destroySelf)
+        {
+            Invoke("DestroySelf", destructionDelay);
+        } 
     }
 
-    // This method is called when a collision occurs
-    private void OnCollisionEnter(Collision collision)
+    void DestroySelf()
     {
-        // Check if the collision is with a bullet
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            // Call the DestroyTarget method to destroy the target
-            DestroyTarget();
-        }
+        Destroy(gameObject);
     }
 }
