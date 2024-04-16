@@ -9,7 +9,17 @@ public class ShootSystem: MonoBehaviour
 
     public InputActionReference triggerAction;
 
-    private int counter = 1;
+    private Vector3 controllerPosition;
+
+    void Start()
+    {
+        controllerPosition = transform.position;
+    }
+
+    void Update()
+    {
+        controllerPosition = transform.position;
+    }
 
     // Define a method to handle the trigger pull event
     private void OnEnable()
@@ -33,17 +43,15 @@ public class ShootSystem: MonoBehaviour
     // Method to handle trigger pull event
     private void OnTriggerPull(InputAction.CallbackContext context)
     {
-        
+
         // Trigger action when the trigger is pulled
-        Debug.Log("Trigger pull " + counter);
-        counter++;
         Shoot(); 
     
     }
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(Revolver_Bullet, muzzlePoint.position, muzzlePoint.rotation);
+        GameObject bullet = Instantiate(Revolver_Bullet, controllerPosition, transform.rotation);
 
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
 
