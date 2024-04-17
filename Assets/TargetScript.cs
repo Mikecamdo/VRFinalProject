@@ -4,6 +4,8 @@ using TMPro;
 public class TargetScript : MonoBehaviour
 {
     public int scoreValue = 10; // Score value for each destroyed object
+    public int rareValue = 20;
+    public int superRareValue = 30; 
 
     private TextMeshPro scoreText; // Reference to the TextMeshPro component
 
