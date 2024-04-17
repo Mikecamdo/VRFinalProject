@@ -34,8 +34,5 @@ public class TargetScript : MonoBehaviour
                 //scoreText.text = "0";
             }
         }
-        Debug.Log("TARGET HIT!!");
-        Destroy(collision.gameObject);
-        Destroy(gameObject); // destroy the target
     }
 }
