@@ -53,11 +53,11 @@ public class ShootSystem: MonoBehaviour
     {
         GameObject bullet = Instantiate(Revolver_Bullet, controllerPosition, transform.rotation);
 
-        BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+        SelfDestructScript selfDestructScript = bullet.GetComponent<SelfDestructScript>();
 
-        if (bulletScript != null)
+        if (selfDestructScript != null)
         {
-            bulletScript.destroySelf = true;
+            selfDestructScript.destroySelf = true;
         }
         
         Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();

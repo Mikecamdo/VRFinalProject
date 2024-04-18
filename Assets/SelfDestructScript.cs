@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class SelfDestructScript : MonoBehaviour
 {
     public float destructionDelay = 5f;
     public bool destroySelf = false;

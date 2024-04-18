@@ -3,13 +3,7 @@ using TMPro;
 
 public class TargetScript : MonoBehaviour
 {
-    public int scoreValue = 10; // Score value for each destroyed object
-    public int rareValue = 20;
-    public int superRareValue = 30; 
-
-    private TextMeshPro scoreText; // Reference to the TextMeshPro component
-
-    
+    private TextMeshPro scoreText; // Reference to the TextMeshPro component   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,7 +19,29 @@ public class TargetScript : MonoBehaviour
             if (int.TryParse(scoreText.text, out currentScore))
             {
                 // Parsing successful, proceed with updating the score
-                int newScore = currentScore + scoreValue;
+                int newScore;
+                Debug.Log(gameObject.name);
+                switch(gameObject.name)
+                {
+                    default:
+                    case "Common Target":
+                        newScore = currentScore + 100;
+                        break;
+
+                    case "Uncommon Target":
+                        newScore = currentScore + 500;
+                        break;
+
+                    case "Rare Target":
+                        newScore = currentScore + 1000;
+                        break;
+
+                    case "Legendary Target":
+                        newScore = currentScore + 5000;
+                        break;
+                }
+
+                
                 scoreText.text = newScore.ToString(); // Update score text
             }
             else
@@ -36,5 +52,7 @@ public class TargetScript : MonoBehaviour
                 //scoreText.text = "0";
             }
         }
+        Destroy(collision.gameObject);
+        Destroy(gameObject); // destroy the target
     }
 }
