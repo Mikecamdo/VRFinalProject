@@ -20,7 +20,6 @@ public class TargetScript : MonoBehaviour
             {
                 // Parsing successful, proceed with updating the score
                 int newScore;
-                Debug.Log(gameObject.name);
                 switch(gameObject.name)
                 {
                     default:
@@ -46,10 +45,7 @@ public class TargetScript : MonoBehaviour
             }
             else
             {
-                // Parsing failed, handle the error (e.g., log a message)
                 Debug.LogError("Failed to parse current score: " + scoreText.text);
-                // Set the score to zero
-                //scoreText.text = "0";
             }
         }
         Destroy(collision.gameObject);
