@@ -9,7 +9,9 @@ public class SpawnerScript : MonoBehaviour
     public GameObject rareTarget;
     public GameObject legendaryTarget;
 
-    private void Start()
+    public bool coroutinesFinished = false;
+
+    public void StartGame()
     {
         // Start the spawning coroutine
         StartCoroutine(SpawnCommonTargets());
@@ -75,6 +77,10 @@ public class SpawnerScript : MonoBehaviour
             // Spawn 1 lengendary target
             SpawnLegendary();
         }
+
+        yield return new WaitForSeconds(5f);
+        Debug.Log("Coroutines done!!");
+        coroutinesFinished = true;
     }
 
     private void SpawnCommon()
