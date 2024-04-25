@@ -8,6 +8,9 @@ TagManager:
   - Score
   - Start
   - Setup
+  - FinalScore
+  - FinalCanvas
+  - dummyScore
   layers:
   - Default
   - TransparentFX

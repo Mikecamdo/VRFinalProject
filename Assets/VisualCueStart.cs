@@ -8,7 +8,9 @@ public class VisualCueStart : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         TextMeshPro scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshPro>();
+        TextMeshPro dummyScore = GameObject.FindGameObjectWithTag("dummyScore").GetComponent<TextMeshPro>();
 
+        dummyScore.text = "Score: " + "\n";
         if (scoreText != null)
         {
             scoreText.text = "0";

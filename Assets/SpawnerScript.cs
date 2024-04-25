@@ -78,7 +78,7 @@ public class SpawnerScript : MonoBehaviour
             SpawnLegendary();
         }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(7f);
         Debug.Log("Coroutines done!!");
         coroutinesFinished = true;
     }
