@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.IO;
+using System;
 
 public class FinalScoreBoard : MonoBehaviour
 {
@@ -55,7 +56,7 @@ public class FinalScoreBoard : MonoBehaviour
     void WriteScoreToCSV(int score)
     {
         Debug.Log("Writing to csv");
-        string filePath = Application.persistentDataPath + "/scores.csv";
+        string filePath = Application.persistentDataPath + "/Finalscores.csv";
 
         // Check if the file exists, if not create it and write headers
         if (!File.Exists(filePath))
@@ -63,15 +64,17 @@ public class FinalScoreBoard : MonoBehaviour
             using (StreamWriter writer = File.CreateText(filePath))
             {
 
-                writer.WriteLine("Player Name, Score");
+                writer.WriteLine("Player Name, Score, Target Accuracy");
             }
         }
 
         // Append score to the file
         using (StreamWriter writer = File.AppendText(filePath))
         {
-            Debug.Log("Write Score"); 
-            writer.WriteLine("Player," + score);
+            Debug.Log("Write Score");
+            writer.WriteLine("Player," + score + "," + Math.Round((GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>().targetsDestroyed / 84.0) * 100, 2));
+            Debug.Log("Accuracy:");
+            Debug.Log(GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>().targetsDestroyed / 84.0);
         }
     }
 }

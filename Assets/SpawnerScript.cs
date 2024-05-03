@@ -16,6 +16,8 @@ public class SpawnerScript : MonoBehaviour
 
     public bool coroutinesFinished = false;
 
+    public int targetsDestroyed = 0;
+
     public void StartGame(int version)
     {
         // Start the spawning coroutine

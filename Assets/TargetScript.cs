@@ -7,6 +7,8 @@ public class TargetScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>().targetsDestroyed++;
+
         Destroy(collision.gameObject); // Destroy the collider object
         Destroy(gameObject); // Destroy the target object
 
