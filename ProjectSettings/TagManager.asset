@@ -11,6 +11,7 @@ TagManager:
   - FinalScore
   - FinalCanvas
   - dummyScore
+  - StartPrefab
   layers:
   - Default
   - TransparentFX
