@@ -33,16 +33,12 @@ public class FinalScoreBoard : MonoBehaviour
             WriteScoreToCSV(finalScore);
 
             // Instantiate start target
-            //Instantiate(startTarget, new Vector3(0, 0, 0), Quaternion.identity);
-            startTargets.transform.position = new Vector3(-0.2f, 1.5f, 1.14f);
+            startTargets.transform.position = new Vector3(-0.2f, 1.75f, 1.14f);
 
             // Display final score
             TextMeshPro textFinalScore = GameObject.FindGameObjectWithTag("FinalScore").GetComponent<TextMeshPro>();
             textFinalScore.text = "Final Score: " + finalScore.ToString();
-            textFinalScore.transform.position = new Vector3(-4, 1, 0);
-
-            //TextMeshPro textNewScore = Instantiate(textFinalScore, new Vector3(-4, 1, 0), Quaternion.Euler(0, 180, 0));
-
+            textFinalScore.transform.position = new Vector3(-4f, 1.3f, 0f);
 
             // Reset coroutinesFinished flag
             spawnerScript.coroutinesFinished = false;
