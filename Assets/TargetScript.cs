@@ -24,18 +24,22 @@ public class TargetScript : MonoBehaviour
                 {
                     default:
                     case "Common Target":
+                    case "100 Target":    
                         newScore = currentScore + 100;
                         break;
 
                     case "Uncommon Target":
+                    case "500 Target":
                         newScore = currentScore + 500;
                         break;
 
                     case "Rare Target":
+                    case "1000 Target":
                         newScore = currentScore + 1000;
                         break;
 
                     case "Legendary Target":
+                    case "5000 Target":
                         newScore = currentScore + 5000;
                         break;
                 }
@@ -49,6 +53,7 @@ public class TargetScript : MonoBehaviour
             }
         }
         Destroy(collision.gameObject);
+        Destroy(transform.parent.gameObject);
         Destroy(gameObject); // destroy the target
     }
 }

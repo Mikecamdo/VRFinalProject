@@ -9,18 +9,34 @@ public class SpawnerScript : MonoBehaviour
     public GameObject rareTarget;
     public GameObject legendaryTarget;
 
+    public GameObject _100Target;
+    public GameObject _500Target;
+    public GameObject _1000Target;
+    public GameObject _5000Target;
+
     public bool coroutinesFinished = false;
 
-    public void StartGame()
+    public void StartGame(int version)
     {
         // Start the spawning coroutine
-        StartCoroutine(SpawnCommonTargets());
-        StartCoroutine(SpawnUncommonTargets());
-        StartCoroutine(SpawnRareTargets());
-        StartCoroutine(SpawnLegendaryTargets());
+        if (version == 1) // Color Cues
+        {
+            StartCoroutine(SpawnCommonTargets(commonTarget));
+            StartCoroutine(SpawnUncommonTargets(uncommonTarget));
+            StartCoroutine(SpawnRareTargets(rareTarget));
+            StartCoroutine(SpawnLegendaryTargets(legendaryTarget));
+        }
+        else // version == 2, Number Cues
+        {
+            StartCoroutine(SpawnCommonTargets(_100Target));
+            StartCoroutine(SpawnUncommonTargets(_500Target));
+            StartCoroutine(SpawnRareTargets(_1000Target));
+            StartCoroutine(SpawnLegendaryTargets(_5000Target));
+        }
+        
     }
 
-    private IEnumerator SpawnCommonTargets()
+    private IEnumerator SpawnCommonTargets(GameObject target)
     {
         // Loop through the number of spawns
         for (int i = 0; i < 10; i++)
@@ -29,15 +45,15 @@ public class SpawnerScript : MonoBehaviour
             yield return new WaitForSeconds(2f);
 
             // Spawn 5 common targets
-            SpawnCommon();
-            SpawnCommon();
-            SpawnCommon();
-            SpawnCommon();
-            SpawnCommon();
+            SpawnCommon(target);
+            SpawnCommon(target);
+            SpawnCommon(target);
+            SpawnCommon(target);
+            SpawnCommon(target);
         }
     }
 
-    private IEnumerator SpawnUncommonTargets()
+    private IEnumerator SpawnUncommonTargets(GameObject target)
     {
         // Loop through the number of spawns
         for (int i = 0; i < 7; i++)
@@ -46,13 +62,13 @@ public class SpawnerScript : MonoBehaviour
             yield return new WaitForSeconds(3f);
 
             // Spawn 3 uncommon targets
-            SpawnUncommon();
-            SpawnUncommon();
-            SpawnUncommon();
+            SpawnUncommon(target);
+            SpawnUncommon(target);
+            SpawnUncommon(target);
         }
     }
 
-    private IEnumerator SpawnRareTargets()
+    private IEnumerator SpawnRareTargets(GameObject target)
     {
         // Loop through the number of spawns
         for (int i = 0; i < 5; i++)
@@ -61,12 +77,12 @@ public class SpawnerScript : MonoBehaviour
             yield return new WaitForSeconds(4f);
 
             // Spawn 2 rare targets
-            SpawnRare();
-            SpawnRare();
+            SpawnRare(target);
+            SpawnRare(target);
         }
     }
 
-    private IEnumerator SpawnLegendaryTargets()
+    private IEnumerator SpawnLegendaryTargets(GameObject target)
     {
         // Loop through the number of spawns
         for (int i = 0; i < 3; i++)
@@ -75,7 +91,7 @@ public class SpawnerScript : MonoBehaviour
             yield return new WaitForSeconds(7f);
 
             // Spawn 1 lengendary target
-            SpawnLegendary();
+            SpawnLegendary(target);
         }
 
         yield return new WaitForSeconds(7f);
@@ -83,13 +99,13 @@ public class SpawnerScript : MonoBehaviour
         coroutinesFinished = true;
     }
 
-    private void SpawnCommon()
+    private void SpawnCommon(GameObject targetToSpawn)
     {
         // Define the position where you want to spawn the object
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(0.5f, 2.5f), Random.Range(-1f, -3f));
 
         // Instantiate the object at the specified position
-        GameObject target = Instantiate(commonTarget, spawnPosition, Quaternion.identity);
+        GameObject target = Instantiate(targetToSpawn, spawnPosition, Quaternion.identity);
 
         SelfDestructScript selfDestructScript = target.GetComponent<SelfDestructScript>();
 
@@ -99,13 +115,13 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
-    private void SpawnUncommon()
+    private void SpawnUncommon(GameObject targetToSpawn)
     {
         // Define the position where you want to spawn the object
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(0.5f, 2.5f), Random.Range(-1f, -3f));
 
         // Instantiate the object at the specified position
-        GameObject target = Instantiate(uncommonTarget, spawnPosition, Quaternion.identity);
+        GameObject target = Instantiate(targetToSpawn, spawnPosition, Quaternion.identity);
 
         SelfDestructScript selfDestructScript = target.GetComponent<SelfDestructScript>();
 
@@ -115,13 +131,13 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
-    private void SpawnRare()
+    private void SpawnRare(GameObject targetToSpawn)
     {
         // Define the position where you want to spawn the object
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(0.5f, 2.5f), Random.Range(-1f, -3f));
 
         // Instantiate the object at the specified position
-        GameObject target = Instantiate(rareTarget, spawnPosition, Quaternion.identity);
+        GameObject target = Instantiate(targetToSpawn, spawnPosition, Quaternion.identity);
 
         SelfDestructScript selfDestructScript = target.GetComponent<SelfDestructScript>();
 
@@ -131,13 +147,13 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
-    private void SpawnLegendary()
+    private void SpawnLegendary(GameObject targetToSpawn)
     {
         // Define the position where you want to spawn the object
         Vector3 spawnPosition = new Vector3(Random.Range(-3f, 3f), Random.Range(0.5f, 2.5f), Random.Range(-1f, -3f));
 
         // Instantiate the object at the specified position
-        GameObject target = Instantiate(legendaryTarget, spawnPosition, Quaternion.identity);
+        GameObject target = Instantiate(targetToSpawn, spawnPosition, Quaternion.identity);
 
         SelfDestructScript selfDestructScript = target.GetComponent<SelfDestructScript>();
 

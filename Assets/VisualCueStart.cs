@@ -5,6 +5,8 @@ using TMPro;
 
 public class VisualCueStart : MonoBehaviour
 {
+    public int version = 1;
+
     private void OnCollisionEnter(Collision collision)
     {
         TextMeshPro scoreText = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshPro>();
@@ -17,7 +19,7 @@ public class VisualCueStart : MonoBehaviour
         }
 
         SpawnerScript spawnerScript = GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>();
-        spawnerScript.StartGame();
+        spawnerScript.StartGame(version);
 
         Destroy(collision.gameObject);
         Destroy(gameObject);
