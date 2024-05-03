@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using System.Collections.Generic; 
+
 
 public class ShootSystem: MonoBehaviour
 {
     public GameObject Revolver_Bullet;
     public Transform muzzlePoint;
     public float bulletSpeed = 1f;
+    public AudioClip shootSound;
+    public AudioSource audioSource;
 
     public InputActionReference triggerAction;
 
@@ -13,6 +18,7 @@ public class ShootSystem: MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         controllerPosition = transform.position;
     }
 
@@ -51,6 +57,9 @@ public class ShootSystem: MonoBehaviour
 
     void Shoot()
     {
+        audioSource.clip = shootSound;
+        audioSource.Play(); 
+
         GameObject bullet = Instantiate(Revolver_Bullet, controllerPosition, transform.rotation);
 
         SelfDestructScript selfDestructScript = bullet.GetComponent<SelfDestructScript>();
