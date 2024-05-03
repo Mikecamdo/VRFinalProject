@@ -17,6 +17,7 @@ public class VisualCueStart : MonoBehaviour
         }
 
         SpawnerScript spawnerScript = GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>();
+        spawnerScript.targetsDestroyed = 0;
         spawnerScript.StartGame();
 
         Destroy(collision.gameObject);

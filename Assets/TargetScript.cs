@@ -4,9 +4,11 @@ using TMPro;
 public class TargetScript : MonoBehaviour
 {
     private TextMeshPro scoreText; // Reference to the TextMeshPro component   
-
+    
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject.FindGameObjectWithTag("Setup").GetComponent<SpawnerScript>().targetsDestroyed++;
+
         Destroy(collision.gameObject); // Destroy the collider object
         Destroy(gameObject); // Destroy the target object
 

@@ -11,6 +11,8 @@ public class SpawnerScript : MonoBehaviour
 
     public bool coroutinesFinished = false;
 
+    public int targetsDestroyed = 0;
+
     public void StartGame()
     {
         // Start the spawning coroutine
@@ -53,7 +55,7 @@ public class SpawnerScript : MonoBehaviour
     }
 
     private IEnumerator SpawnRareTargets()
-    {
+    {   
         // Loop through the number of spawns
         for (int i = 0; i < 5; i++)
         {
